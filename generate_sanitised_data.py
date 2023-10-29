@@ -18,8 +18,12 @@ def read_text_files(path):
             numbers = []
             for line in lines[5:]:  # Start from the 6th line
                 line = line.strip()
-                if line.isdigit() and 0 <= int(line) <= 4095:
-                    numbers.append(int(line))
+                if line.isdigit() and 0 <= int(line) <= 4096:
+                    if file_name.startswith("Sappho_"):
+                        flipped_number = 4096 - int(line)  # Flips the data from Sappho_XXXXX.txt signals
+                        numbers.append(flipped_number)
+                    else:
+                        numbers.append(int(line))
 
             data[file_name] = numbers  # Store extracted numbers in the dictionary with file name as key
 
@@ -73,7 +77,7 @@ def write_averages_to_file(element_averages, output_file="sanitised_data.txt"):
             file.write(str(average_list) + "\n")
 
 
-directory_path = "./SamplesOld"
+directory_path = "./SamplesOld" # Replace with actual path
 file_contents = read_text_files(directory_path)
 split_data = split_data_into_arrays(file_contents)
 averages = calculate_element_averages(split_data)
