@@ -1,4 +1,4 @@
-./Samples
-./SamplesOld
-./Results
-./ResultsOld
+Samples/*
+SamplesOld/*
+Results/*
+ResultsOld/*
