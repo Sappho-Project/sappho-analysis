@@ -55,9 +55,9 @@ def coherence(theoretical_data, experimental_data):
 
     for theoretical_array in theoretical_data:
         for experimental_array in experimental_data:
-            f, Pxy = signal.csd(theoretical_array, experimental_array, fs=0.1, nperseg=75)
-            f, Pxx = signal.csd(theoretical_array, theoretical_array, fs=0.1, nperseg=75)
-            f, Pyy = signal.csd(experimental_array, experimental_array, fs=0.1, nperseg=75)
+            f, Pxy = signal.csd(theoretical_array, experimental_array, fs=1, nperseg=750)
+            f, Pxx = signal.csd(theoretical_array, theoretical_array, fs=1, nperseg=750)
+            f, Pyy = signal.csd(experimental_array, experimental_array, fs=1, nperseg=750)
 
             coherence = np.abs(Pxy) ** 2 / (Pxx * Pyy)
             mean_coherence = np.mean(coherence)
@@ -130,7 +130,7 @@ def wavelet_transform(data, filename):
 def kmeans_clustering(theoretical_data, experimental_data):
     combined_data = theoretical_data + experimental_data
     kmeans_results = []
-    num_clusters = 2
+    num_clusters = 3
 
     # Convert the data to a NumPy array
     data_array = np.array(combined_data)
