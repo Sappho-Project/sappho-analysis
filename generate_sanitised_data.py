@@ -70,14 +70,32 @@ def calculate_element_averages(split_arrays):
     return element_averages
 
 
+def moving_average_filter(arr):
+    window_size = 3
+    moving_averages = []
+
+    for i in range(len(arr)):
+        if i < window_size - 1:
+            moving_averages.append(arr[i])
+        else:
+            window = arr[i - window_size + 1:i + 1]
+            average = sum(window) / window_size
+            moving_averages.append(average)
+
+    return moving_averages
+
+
 def write_averages_to_file(element_averages, output_file="sanitised_data.txt"):
     with open(output_file, 'w') as file:
         for average_list in element_averages.values():
+            # Filter the avarage list
+            filtered_avarage_list = moving_average_filter(average_list)
+
             # Write each average list as a string
-            file.write(str(average_list) + "\n")
+            file.write(str(filtered_avarage_list) + "\n")
 
 
-directory_path = "./SamplesOld" # Replace with actual path
+directory_path = "./SamplesOld"  # Replace with actual path
 file_contents = read_text_files(directory_path)
 split_data = split_data_into_arrays(file_contents)
 averages = calculate_element_averages(split_data)
