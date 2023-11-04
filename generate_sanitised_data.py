@@ -6,7 +6,7 @@ def read_text_files(path):
     data = {}  # Create a dictionary to store file contents with file names as keys
 
     # Use the glob module to get a list of all text files in the directory
-    text_files = glob.glob(os.path.join(path, '*.txt'))
+    text_files = sorted(glob.glob(os.path.join(path, '*.txt')))
 
     # Iterate through each text file and read its contents
     for file_path in text_files:
