@@ -2,3 +2,5 @@ Samples/*
 SamplesOld/*
 Results/*
 ResultsOld/*
+.idea/*
+sanitised_data.txt
