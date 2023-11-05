@@ -89,10 +89,10 @@ def write_averages_to_file(element_averages, output_file="sanitised_data.txt"):
     with open(output_file, 'w') as file:
         for average_list in element_averages.values():
             # Filter the avarage list
-            filtered_avarage_list = moving_average_filter(average_list)
+            avarage_list = moving_average_filter(average_list)
 
             # Write each average list as a string
-            file.write(str(filtered_avarage_list) + "\n")
+            file.write(str(avarage_list) + "\n")
 
 
 directory_path = "./SamplesOld"  # Replace with actual path
