@@ -16,7 +16,7 @@ def read_text_files(path):
 
             # Extract numbers from the 6th line onward
             numbers = []
-            for line in lines[5:]:  # Start from the 6th line
+            for line in lines[4:]:  # Start from the 6th line
                 line = line.strip()
                 if line.isdigit() and 0 <= int(line) <= 4096:
                     if file_name.startswith("Sappho_"):
@@ -34,7 +34,7 @@ def split_data_into_arrays(data):
     split_arrays = {}  # Create a dictionary to store split arrays
 
     for file_name, file_data in data.items():
-        array_size = 128
+        array_size = 1500
         num_arrays = len(file_data) // array_size
 
         split_arrays[file_name] = []
@@ -89,13 +89,13 @@ def write_averages_to_file(element_averages, output_file="sanitised_data.txt"):
     with open(output_file, 'w') as file:
         for average_list in element_averages.values():
             # Filter the avarage list
-            avarage_list = moving_average_filter(average_list)
+            #average_list = moving_average_filter(average_list)
 
             # Write each average list as a string
-            file.write(str(avarage_list) + "\n")
+            file.write(str(average_list) + "\n")
 
 
-directory_path = "./SamplesOld"  # Replace with actual path
+directory_path = "./Samples"  # Replace with actual path
 file_contents = read_text_files(directory_path)
 split_data = split_data_into_arrays(file_contents)
 averages = calculate_element_averages(split_data)
