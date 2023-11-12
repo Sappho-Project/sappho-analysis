@@ -6,6 +6,7 @@ from scipy.fft import fft
 import pywt
 from sklearn.cluster import KMeans
 from scipy.stats import ks_2samp, linregress, pearsonr
+from sklearn.metrics import r2_score
 import math
 
 
@@ -83,7 +84,7 @@ def rsquared(theoretical_data, experimental_data):
     r_squared_arr = []
     for theoretical_array in theoretical_data:
         for experimental_array in experimental_data: 
-            slope, intercept, r_value, p_value, std_err = linregress(theoretical_array, experimental_array)
+            r_value = r2_score(theoretical_array, experimental_array)
             r_squared_arr.append(r_value)
     write_results_to_file(r_squared_arr, "rsquare_results.txt")
 
@@ -189,14 +190,14 @@ theoretical_data = [[math.log(element) for element in sub_array] for sub_array i
 
 normalized_theoretical_data = normalize_data(theoretical_data)
 
-coherence(normalized_theoretical_data, normalized_sanitised_data)
-cross_correlation(normalized_theoretical_data, normalized_sanitised_data)
-dynamic_time_warping(normalized_theoretical_data, normalized_sanitised_data)
-fourier_transform(normalized_theoretical_data, "fourier_theoretical_results.txt")
-fourier_transform(normalized_sanitised_data, "fourier_experimental_results.txt")
-wavelet_transform(normalized_theoretical_data, "wavelet_theoretical_results.txt")
-wavelet_transform(normalized_sanitised_data, "wavelet_experimental_results.txt")
-kmeans_clustering(normalized_theoretical_data, normalized_sanitised_data)
-kolmogorov_smirnov_test(normalized_theoretical_data, normalized_sanitised_data)
+#coherence(normalized_theoretical_data, normalized_sanitised_data)
+#cross_correlation(normalized_theoretical_data, normalized_sanitised_data)
+#dynamic_time_warping(normalized_theoretical_data, normalized_sanitised_data)
+#fourier_transform(normalized_theoretical_data, "fourier_theoretical_results.txt")
+#fourier_transform(normalized_sanitised_data, "fourier_experimental_results.txt")
+#wavelet_transform(normalized_theoretical_data, "wavelet_theoretical_results.txt")
+#wavelet_transform(normalized_sanitised_data, "wavelet_experimental_results.txt")
+#kmeans_clustering(normalized_theoretical_data, normalized_sanitised_data)
+#kolmogorov_smirnov_test(normalized_theoretical_data, normalized_sanitised_data)
 rsquared(normalized_theoretical_data, normalized_sanitised_data)
-pearsoncalc(normalized_theoretical_data, normalized_sanitised_data)
+#pearsoncalc(normalized_theoretical_data, normalized_sanitised_data)
